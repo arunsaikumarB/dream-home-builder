@@ -1,0 +1,47 @@
+{
+  "routes": [
+    { "route": "/apartments", "rewrite": "/apartments.html" },
+    { "route": "/contact", "rewrite": "/contact.html" },
+    { "route": "/success", "rewrite": "/success.html" },
+
+    { "route": "/apartments/011", "rewrite": "/apartments/011.html" },
+    { "route": "/apartments/012", "rewrite": "/apartments/012.html" },
+    { "route": "/apartments/031", "rewrite": "/apartments/031.html" },
+    { "route": "/apartments/032", "rewrite": "/apartments/032.html" },
+    { "route": "/apartments/033", "rewrite": "/apartments/033.html" },
+    { "route": "/apartments/034", "rewrite": "/apartments/034.html" },
+    { "route": "/apartments/111", "rewrite": "/apartments/111.html" },
+    { "route": "/apartments/112", "rewrite": "/apartments/112.html" },
+    { "route": "/apartments/113", "rewrite": "/apartments/113.html" },
+    { "route": "/apartments/114", "rewrite": "/apartments/114.html" },
+    { "route": "/apartments/121", "rewrite": "/apartments/121.html" },
+    { "route": "/apartments/122", "rewrite": "/apartments/122.html" },
+    { "route": "/apartments/123", "rewrite": "/apartments/123.html" },
+    { "route": "/apartments/124", "rewrite": "/apartments/124.html" },
+    { "route": "/apartments/131", "rewrite": "/apartments/131.html" },
+    { "route": "/apartments/132", "rewrite": "/apartments/132.html" },
+    { "route": "/apartments/133", "rewrite": "/apartments/133.html" },
+    { "route": "/apartments/134", "rewrite": "/apartments/134.html" },
+    { "route": "/apartments/211", "rewrite": "/apartments/211.html" },
+    { "route": "/apartments/212", "rewrite": "/apartments/212.html" },
+    { "route": "/apartments/213", "rewrite": "/apartments/213.html" },
+    { "route": "/apartments/221", "rewrite": "/apartments/221.html" },
+    { "route": "/apartments/222", "rewrite": "/apartments/222.html" },
+    { "route": "/apartments/223", "rewrite": "/apartments/223.html" },
+    { "route": "/apartments/224", "rewrite": "/apartments/224.html" }
+  ],
+  "responseOverrides": {
+    "404": { "rewrite": "/404.html" }
+  },
+  "mimeTypes": {
+    ".webp": "image/webp",
+    ".avif": "image/avif",
+    ".svg": "image/svg+xml",
+    ".woff2": "font/woff2",
+    ".json": "application/json"
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  }
+}

@@ -1,0 +1,32 @@
+---
+description: Always push completed work to GitHub and GitLab remotes
+alwaysApply: true
+---
+
+# Dual remote push (GitHub + GitLab)
+
+After finishing code/content changes in this project (when work is ready to save remotely), **always commit (if needed) and push to both remotes** without waiting for the user to ask again.
+
+## Remotes
+
+| Remote | URL | Branch |
+|--------|-----|--------|
+| `origin` (GitHub) | `https://github.com/arunsaikumarB/dream-home-builder.git` | `main` (or current tracking branch) |
+| `gitlab` | `http://gitlab.lstech-hq.lstechinc.com/websites/dh-builders.git` | `dh-builder-v2` |
+
+## Workflow
+
+1. Commit meaningful changes when the task is complete (or when the user asked to push). Follow the project's commit message style.
+2. Push to GitHub: `git push -u origin HEAD` (or the tracked branch, usually `main`).
+3. Push the same commit(s) to GitLab branch `dh-builder-v2`:
+   - `git push -u gitlab HEAD:dh-builder-v2`
+4. If `gitlab` remote is missing, add it first:
+   - `git remote add gitlab http://gitlab.lstech-hq.lstechinc.com/websites/dh-builders.git`
+5. Never force-push to `main`/`master` unless the user explicitly requests it.
+6. Do not update git config. Do not commit secrets (`.env`, credentials).
+
+## Notes
+
+- Prefer project `.git` under this workspace — never operate on a parent/home git repo by mistake.
+- Skip empty commits when there is nothing to push.
+- Report both remote URLs/status briefly after a successful push.

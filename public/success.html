@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Message Sent | Dream Home Builders</title>
+  <style>
+    :root {
+      --navy: #063670;
+      --gold: #B88734;
+      --cream: #F7F3EC;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: Georgia, "Times New Roman", serif;
+      background: linear-gradient(160deg, var(--cream), #D9E8F4 70%);
+      color: var(--navy);
+      padding: 2rem;
+      text-align: center;
+    }
+    .card {
+      max-width: 28rem;
+    }
+    .mark {
+      width: 3.5rem;
+      height: 3.5rem;
+      margin: 0 auto 1.25rem;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: var(--gold);
+      color: #fff;
+      font-size: 1.6rem;
+      font-family: system-ui, sans-serif;
+    }
+    h1 { font-size: clamp(2rem, 4vw, 2.75rem); margin: 0 0 0.75rem; }
+    p { line-height: 1.55; margin: 0 0 1.75rem; opacity: 0.9; }
+    a {
+      display: inline-block;
+      padding: 0.85rem 1.4rem;
+      background: var(--navy);
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-family: system-ui, sans-serif;
+      font-size: 0.85rem;
+    }
+    a:hover { background: var(--gold); }
+  </style>
+<style id="dhb-hide-cookies-css">
+  /* Popup chrome only — .cookies / .cookies_card wrap page content in this export. */
+  .cookies_card_t,
+  .cookies_card_b,
+  .cookies_card_btn-list,
+  .cookies_card_title {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+  .cookies_card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+  }
+  .cookies,
+  .cookies_c,
+  [data-cookies] {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: static !important;
+    inset: auto !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
+  }
+</style></head>
+<body>
+  <div class="card">
+    <div class="mark" aria-hidden="true">✓</div>
+    <h1>Success!</h1>
+    <p>Your message has been sent to the Dream Home Builders team.</p>
+    <a href="/">Return Home</a>
+  </div>
+<script id="dhb-remove-cookies-js">
+(function () {
+  function nuke() {
+    document.querySelectorAll('.cookies_card_t, .cookies_card_b').forEach(function (el) {
+      el.remove();
+    });
+  }
+  nuke();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', nuke);
+  }
+  window.addEventListener('load', nuke);
+  setTimeout(nuke, 0);
+  setTimeout(nuke, 500);
+})();
+</script></body>
+</html>
