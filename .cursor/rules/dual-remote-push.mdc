@@ -22,7 +22,7 @@ After finishing code/content changes in this project (when work is ready to save
    - `git push -u gitlab HEAD:dh-builder-v2`
 4. If `gitlab` remote is missing, add it first:
    - `git remote add gitlab http://gitlab.lstech-hq.lstechinc.com/websites/dh-builders.git`
-5. Never force-push to `main`/`master` unless the user explicitly requests it.
+5. **Never force-push** (`--force`, `-f`, `--force-with-lease`) to any branch or remote — even if asked. Use normal pushes only.
 6. Do not update git config. Do not commit secrets (`.env`, credentials).
 
 ## Notes
