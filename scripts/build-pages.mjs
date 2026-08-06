@@ -2,6 +2,8 @@
 // index.html itself is READ ONLY here - it is never written.
 import fs from 'node:fs'
 import path from 'node:path'
+import { contactTabsHTML, CONTACT_TABS_JS } from './contact-tabs-partial.mjs'
+import { QUOTE_MODAL_HTML } from './quote-modal-partial.mjs'
 
 const ROOT = process.cwd()
 const PUB = path.join(ROOT, 'public')
@@ -25,8 +27,6 @@ let topnav = grab(/<nav class="dhb-topnav"[\s\S]*?<\/nav>/, 'topnav')
 let footer = grab(/<footer class="dhb-site-footer"[\s\S]*?<\/footer>/, 'footer')
 const namedScript = (id) => grab(new RegExp('<script id="' + id + '">[\\s\\S]*?<\\/script>'), id)
 const autohide = namedScript('dhb-header-autohide-js')
-const revealJs = namedScript('dhb-quote-reveal-js')
-const formJs = grab(/<script>\s*\(\(\) => \{\s*const quoteForm[\s\S]*?<\/script>/, 'form handler')
 
 // ---------- rewrite in-page anchors to real page urls ----------
 const MAP = {
@@ -89,6 +89,54 @@ const gallery = CATS.map(([slug, label]) => {
 }).filter(Boolean)
 const totalImgs = gallery.reduce((a, g) => a + g.files.length, 0)
 
+// ---------- mobile nav ----------
+// The homepage's hamburger menu is a heavy Webflow/GSAP overlay that depends on
+// scripts never loaded on the generated pages (barba, SplitText, lenis, ...).
+// Below 992px .dhb-topnav-links and the CTA hide entirely with nothing to
+// replace them, so inner pages had NO way to navigate on mobile at all. This
+// is a small self-contained substitute, built from the same links already
+// extracted into `topnav` so the two can't drift out of sync.
+const navLinksBlock = topnav.match(/<div class="dhb-topnav-links">[\s\S]*?<\/div>/)[0]
+const mobileLinks = [...navLinksBlock.matchAll(/<a href="([^"]+)">([^<]+)<\/a>/g)]
+if (mobileLinks.length < 5) throw new Error('expected at least 5 nav links, parsed ' + mobileLinks.length)
+
+const mobileNav = `<div class="dhb-mnav">
+  <button type="button" class="dhb-mnav-btn" data-mnav-open aria-label="Open menu" aria-expanded="false" aria-controls="dhb-mnav-panel">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="dhb-mnav-overlay" data-mnav-close></div>
+  <nav class="dhb-mnav-panel" id="dhb-mnav-panel" aria-label="Mobile">
+    <button type="button" class="dhb-mnav-close" data-mnav-close aria-label="Close menu">&times;</button>
+    <ul>
+${mobileLinks.map(([, href, label]) => `      <li><a href="${href}">${label}</a></li>`).join('\n')}
+    </ul>
+    <a class="dhb-mnav-cta" href="/contact" data-open-quote>Request Quote</a>
+  </nav>
+</div>`
+
+const mobileNavJs = `<script id="dhb-mobile-nav-js">
+(function () {
+  var root = document.querySelector('.dhb-mnav');
+  if (!root) return;
+  var btn = root.querySelector('[data-mnav-open]');
+  var panel = root.querySelector('.dhb-mnav-panel');
+  function open() {
+    root.classList.add('is-open');
+    btn.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('dhb-modal-open');
+  }
+  function close() {
+    root.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('dhb-modal-open');
+  }
+  btn.addEventListener('click', open);
+  root.querySelectorAll('[data-mnav-close]').forEach(function (el) { el.addEventListener('click', close); });
+  panel.querySelectorAll('a:not([data-open-quote])').forEach(function (a) { a.addEventListener('click', close); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+})();
+</script>`
+
 // ---------- page shell ----------
 const page = ({ slug, title, desc, body, extraJs = '' }) => `<!doctype html>
 <html lang="en">
@@ -108,11 +156,15 @@ const page = ({ slug, title, desc, body, extraJs = '' }) => `<!doctype html>
 </head>
 <body class="dhb-subpage">
 ${topnav}
+${mobileNav}
 <main class="dhb-main">
 ${body}
 </main>
 ${footer}
 ${autohide}
+${mobileNavJs}
+${CONTACT_TABS_JS}
+${QUOTE_MODAL_HTML}
 ${extraJs}
 </body>
 </html>
@@ -160,7 +212,7 @@ const aboutBody = `${pagehead('Who we are', 'About Us', 'Dream Home Builders has
     <ul class="dhb-ab-list">
 ${services.map((sv, i) => `      <li><a href="/services"><em>${pad2(i + 1)}</em><span>${sv.title}</span></a></li>`).join('\n')}
     </ul>
-    <a class="dhb-cta l1" href="/contact">Request a quote</a>
+    <a class="dhb-cta l1" href="/contact" data-open-quote>Request a quote</a>
   </div>
 </section>`
 
@@ -173,7 +225,7 @@ ${services.map((s, i) => `    <article class="dhb-srv-row">
         <span class="dhb-srv-num">${pad2(i + 1)}</span>
         <h2 class="dhb-srv-title">${s.title}</h2>
         <p class="dhb-srv-copy">${s.copy}</p>
-        <a class="dhb-srv-link" href="/contact">Discuss this project</a>
+        <a class="dhb-srv-link" href="/contact" data-open-quote>Discuss this project</a>
       </div>
       <figure class="dhb-srv-fig"><img src="${s.img}" alt="${s.alt}" loading="lazy" decoding="async" /></figure>
     </article>`).join('\n')}
@@ -187,7 +239,7 @@ const projectsBody = `${pagehead('Our work', 'Projects', 'Seeing is believing. B
     <aside class="dhb-prj-rail">
       <span class="dhb-prj-railhead">Browse</span>
 ${gallery.map((g, i) => `      <button type="button" class="dhb-prj-tab${i === 0 ? ' is-active' : ''}" data-gtab="${g.slug}"><span>${g.label}</span><em>${pad2(g.files.length)}</em></button>`).join('\n')}
-      <a class="dhb-prj-cta" href="/contact">Start your project</a>
+      <a class="dhb-prj-cta" href="/contact" data-open-quote>Start your project</a>
     </aside>
     <div class="dhb-prj-main">
 ${gallery.map((g, i) => `      <div class="dhb-prj-wall dhb-gpane${i === 0 ? ' is-active' : ''}" data-gpane="${g.slug}">
@@ -239,34 +291,20 @@ ${reviews.slice(1).map((r, i) => `      <li class="dhb-tst-row">
         <p class="dhb-tst-who"><span class="dhb-tst-name">${r.name}</span><span class="dhb-tst-proj">${r.project}</span></p>
       </li>`).join('\n')}
     </ol>
-    <div class="dhb-tst-foot"><a class="dhb-cta l1" href="/contact">Request a quote</a></div>
+    <div class="dhb-tst-foot"><a class="dhb-cta l1" href="/contact" data-open-quote>Request a quote</a></div>
   </div>
 </section>`
 
 // ============================== CONTACT ==============================
-const contactBody = `${pagehead('Get in touch', 'Contact', 'Tell us about your project and we will come back with a clear, detailed estimate.')}
+const CONTACT_MAP_SRC =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3036.035345717311!2d-74.3734674!3d40.5407981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3c90710609b1f%3A0xc6c4f8d956b6b3e!2s25%20Parker%20Rd%2C%20Edison%2C%20NJ%2008820!5e0!3m2!1sen!2sus!4v1700000000000'
+
+const contactBody = `${pagehead('Get in touch', 'Contact Us', 'In person at our Edison studio, or virtually from anywhere in New Jersey.')}
 <section class="section clip theme_on-light dhb-block dhb-ct">
   <div class="dhb-inner">
-    <ul class="dhb-ct-cards">
-      <li>
-        <span class="dhb-ct-k">Call</span>
-        <a class="dhb-ct-v" href="tel:+19087971777">(908) 797-1777</a>
-        <span class="dhb-ct-s">Mon &ndash; Fri, 9am &ndash; 6pm</span>
-      </li>
-      <li>
-        <span class="dhb-ct-k">Email</span>
-        <a class="dhb-ct-v" href="mailto:dreamhomebuildersnj@gmail.com">dreamhomebuildersnj@gmail.com</a>
-        <span class="dhb-ct-s">We reply within one business day</span>
-      </li>
-      <li>
-        <span class="dhb-ct-k">Studio</span>
-        <a class="dhb-ct-v" href="https://maps.app.goo.gl/qYnY5QVnExpty1Wa7" target="_blank" rel="noopener noreferrer">25 Parker Rd, Edison NJ 08820</a>
-        <span class="dhb-ct-s">Visits by appointment</span>
-      </li>
-    </ul>
+${contactTabsHTML({ mapSrc: CONTACT_MAP_SRC })}
   </div>
-</section>
-${section('quote')}`
+</section>`
 
 const pages = [
   {
@@ -296,10 +334,9 @@ const pages = [
   },
   {
     slug: 'contact',
-    title: 'Contact — Dream Home Builders | Edison, New Jersey',
-    desc: 'Request a detailed quote from Dream Home Builders. Studio at 25 Parker Rd, Edison NJ 08820.',
+    title: 'Contact Us — Dream Home Builders | Edison, New Jersey',
+    desc: 'Reach Dream Home Builders in person at our Edison studio or virtually from anywhere in New Jersey. Studio at 25 Parker Rd, Edison NJ 08820.',
     body: contactBody,
-    extraJs: revealJs + '\n' + formJs,
   },
 ]
 

@@ -572,194 +572,6 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 
 
-  /* ============ Request a Quote — split panel ============ */
-  #quote.dhb-quote-panel {
-    padding: 0;
-    color: #f3f3ec;
-    --_colors---other--bg: #063670;
-  }
-  #quote .dhb-q-split {
-    display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    min-height: 26rem;
-  }
-  @media (max-width: 991px) {
-    #quote .dhb-q-split { grid-template-columns: 1fr; }
-  }
-
-  /* left visual */
-  #quote .dhb-q-visual { position: relative; min-height: 16rem; }
-  #quote .dhb-q-visual iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-    display: block;
-    filter: saturate(0.85);
-  }
-  #quote .dhb-q-directions {
-    position: absolute;
-    left: clamp(1.25rem, 2.5vw, 2.25rem);
-    bottom: clamp(1.25rem, 2.5vw, 2.25rem);
-    padding: 0.85rem 1.5rem;
-    border-radius: 999px;
-    background: #f3f3ec;
-    color: #063670;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background 0.25s ease;
-  }
-  #quote .dhb-q-directions:hover { background: #e8bc5e; }
-
-  /* right panel */
-  #quote .dhb-q-panel {
-    background: #063670;
-    padding: clamp(2.1rem, 3.6vw, 3.4rem) clamp(1.5rem, 4vw, 4rem);
-    display: flex;
-    align-items: center;
-  }
-  #quote .dhb-q-inner { width: 100%; max-width: 36rem; margin: 0 auto; }
-  #quote .dhb-q-eyebrow {
-    display: block;
-    text-align: center;
-    font-size: 0.66rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: #e8bc5e;
-  }
-  #quote .dhb-q-title {
-    margin: 0.9rem 0 0;
-    text-align: center;
-    font-family: var(--_fonts---font-display, Georgia, serif);
-    font-size: clamp(1.85rem, 3.2vw, 2.8rem);
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
-    color: #f3f3ec;
-  }
-  #quote .dhb-q-title em { font-style: italic; }
-  #quote .dhb-q-intro {
-    margin: 0.85rem auto 0;
-    max-width: 30rem;
-    text-align: center;
-    font-size: 0.92rem;
-    line-height: 1.6;
-    color: rgba(243, 243, 236, 0.7);
-  }
-
-  /* underline fields */
-  #quote .dhb-q-form { margin-top: 1.9rem; display: grid; gap: 1.15rem; }
-  #quote .dhb-q-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.15rem; }
-  @media (max-width: 560px) { #quote .dhb-q-row { grid-template-columns: 1fr; } }
-  #quote .dhb-q-field { position: relative; display: block; }
-  #quote .dhb-q-flabel {
-    position: absolute;
-    left: 0;
-    top: 0.35rem;
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(243, 243, 236, 0.6);
-    pointer-events: none;
-    transition: transform 0.25s ease, color 0.25s ease, font-size 0.25s ease;
-    transform-origin: left top;
-  }
-  #quote .dhb-q-field input,
-  #quote .dhb-q-field select,
-  #quote .dhb-q-field textarea {
-    width: 100%;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 1.2rem 0 0.45rem;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid rgba(243, 243, 236, 0.32);
-    border-radius: 0;
-    color: #f3f3ec;
-    font: inherit;
-    font-size: 0.95rem;
-    outline: none;
-    appearance: none;
-    transition: border-color 0.25s ease;
-  }
-  #quote .dhb-q-field textarea { resize: vertical; min-height: 2.8rem; }
-  #quote .dhb-q-field input:focus,
-  #quote .dhb-q-field select:focus,
-  #quote .dhb-q-field textarea:focus { border-bottom-color: #e8bc5e; }
-  /* float the label once the field has focus or content */
-  #quote .dhb-q-field input:focus ~ .dhb-q-flabel,
-  #quote .dhb-q-field textarea:focus ~ .dhb-q-flabel,
-  #quote .dhb-q-field select:focus ~ .dhb-q-flabel,
-  #quote .dhb-q-field input:not(:placeholder-shown) ~ .dhb-q-flabel,
-  #quote .dhb-q-field textarea:not(:placeholder-shown) ~ .dhb-q-flabel,
-  #quote .dhb-q-field select:valid ~ .dhb-q-flabel { color: #e8bc5e; }
-  #quote .dhb-q-field select option { color: #063670; background: #f3f3ec; }
-  #quote .dhb-q-field input[type="date"] { color-scheme: dark; }
-  #quote .dhb-q-field input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); opacity: 0.7; cursor: pointer; }
-
-  #quote .dhb-q-submit {
-    margin-top: 0.5rem;
-    padding: 1.05rem 2rem;
-    border: 0;
-    border-radius: 999px;
-    background: #f3f3ec;
-    color: #063670;
-    font-family: var(--_fonts---font-display, Georgia, serif);
-    font-size: 1rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  #quote .dhb-q-submit:hover { background: #e8bc5e; }
-  #quote .dhb-q-submit:disabled { opacity: 0.6; cursor: default; }
-  #quote .dhb-q-status { margin: 0; text-align: center; font-size: 0.8rem; color: #e8bc5e; }
-  #quote .dhb-q-fine {
-    margin: 0;
-    text-align: center;
-    font-size: 0.72rem;
-    line-height: 1.55;
-    color: rgba(243, 243, 236, 0.45);
-  }
-  #quote .dhb-q-contact {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem 1.5rem;
-    margin-top: 1.7rem;
-    padding-top: 1.1rem;
-    border-top: 1px solid rgba(243, 243, 236, 0.16);
-    font-size: 0.8rem;
-    color: rgba(243, 243, 236, 0.6);
-  }
-  #quote .dhb-q-contact a { color: rgba(243, 243, 236, 0.82); text-decoration: none; }
-  #quote .dhb-q-contact a:hover { color: #e8bc5e; }
-
-  /* ---- reveal on enter (self-contained, not the Webflow GSAP system) ---- */
-  #quote [data-q-reveal] {
-    opacity: 0;
-    transform: translateY(1.5rem);
-    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  #quote [data-q-reveal="visual"] { transform: translateX(-2rem); }
-  #quote.is-in [data-q-reveal] { opacity: 1; transform: none; }
-  #quote.is-in [data-q-reveal="1"] { transition-delay: 0.05s; }
-  #quote.is-in [data-q-reveal="2"] { transition-delay: 0.15s; }
-  #quote.is-in [data-q-reveal="3"] { transition-delay: 0.28s; }
-  #quote.is-in [data-q-reveal="4"] { transition-delay: 0.4s; }
-  #quote.is-in [data-q-reveal="5"] { transition-delay: 0.55s; }
-  @media (prefers-reduced-motion: reduce) {
-    #quote [data-q-reveal] { opacity: 1; transform: none; transition: none; }
-  }
-
-
-
   .dhb-topnav {
     position: fixed;
     top: 0;
@@ -2141,3 +1953,136 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
   .loc-w_decor {
     clip-path: polygon(var(--_special-units---offset-l) 0, calc(100% - var(--_special-units---offset-r)) 0%, 100% 101%, 0 101%);
   }
+
+
+
+  .dhb-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s;
+  }
+  .dhb-modal.is-open { visibility: visible; opacity: 1; }
+  .dhb-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(6, 20, 40, 0.6);
+    backdrop-filter: blur(3px);
+  }
+  .dhb-modal-panel {
+    position: relative;
+    width: 100%;
+    max-width: 34rem;
+    max-height: min(92vh, 46rem);
+    overflow-y: auto;
+    background: #f3f3ec;
+    border: 1px solid rgba(6, 54, 112, 0.14);
+    border-top: 3px solid #e8bc5e;
+    box-shadow: 0 30px 70px -20px rgba(6, 20, 40, 0.45);
+    padding: clamp(2rem, 5vw, 3rem);
+    transform: translateY(14px) scale(0.98);
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .dhb-modal.is-open .dhb-modal-panel { transform: none; }
+  .dhb-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2.1rem;
+    height: 2.1rem;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(6, 54, 112, 0.2);
+    background: transparent;
+    color: #063670;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .dhb-modal-close:hover { background: #063670; color: #f3f3ec; }
+  .dhb-qm-eyebrow {
+    display: block;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #b88734;
+  }
+  .dhb-qm-title {
+    margin: 0.9rem 0 0;
+    font-family: var(--_fonts---font-display, Georgia, serif);
+    font-size: clamp(1.7rem, 4vw, 2.2rem);
+    font-weight: 400;
+    line-height: 1.08;
+    text-transform: uppercase;
+    color: #063670;
+  }
+  .dhb-qm-title em { font-style: italic; }
+  .dhb-qm-intro { margin: 0.8rem 0 0; font-size: 0.9rem; line-height: 1.55; color: rgba(6, 54, 112, 0.72); }
+  .dhb-qm-form { margin-top: 1.8rem; display: grid; gap: 1.25rem; }
+  .dhb-qm-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem; }
+  @media (max-width: 480px) { .dhb-qm-row { grid-template-columns: 1fr; } }
+  .dhb-qm-field { position: relative; display: block; }
+  .dhb-qm-flabel {
+    display: block;
+    margin-bottom: 0.45rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #063670;
+  }
+  .dhb-qm-optional { font-weight: 400; color: rgba(6, 54, 112, 0.5); text-transform: none; letter-spacing: 0; }
+  .dhb-qm-field input,
+  .dhb-qm-field select,
+  .dhb-qm-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0.85rem 1rem;
+    background: #ffffff;
+    border: 1px solid rgba(6, 54, 112, 0.22);
+    border-radius: 3px;
+    color: #063670;
+    font: inherit;
+    font-size: 0.92rem;
+    outline: none;
+    appearance: none;
+    transition: border-color 0.25s ease;
+  }
+  .dhb-qm-field textarea { resize: vertical; min-height: 5.5rem; }
+  .dhb-qm-field input:focus,
+  .dhb-qm-field select:focus,
+  .dhb-qm-field textarea:focus { border-color: #b88734; }
+  .dhb-qm-field select {
+    background-image: linear-gradient(45deg, transparent 50%, #063670 50%), linear-gradient(135deg, #063670 50%, transparent 50%);
+    background-position: calc(100% - 1.15rem) center, calc(100% - 0.8rem) center;
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+    padding-right: 2.25rem;
+  }
+  .dhb-qm-field select:invalid { color: rgba(6, 54, 112, 0.5); }
+  .dhb-qm-field input[type="date"] { color-scheme: light; }
+  .dhb-qm-submit {
+    margin-top: 0.3rem;
+    padding: 1.05rem 1.5rem;
+    border: 0;
+    background: #063670;
+    color: #f3f3ec;
+    font-family: var(--_fonts---font-display, Georgia, serif);
+    font-size: 0.95rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .dhb-qm-submit:hover { background: #b88734; }
+  .dhb-qm-submit:disabled { opacity: 0.6; cursor: default; }
+  .dhb-qm-status { margin: 0; text-align: center; font-size: 0.78rem; color: #b88734; }
+  body.dhb-modal-open { overflow: hidden; }

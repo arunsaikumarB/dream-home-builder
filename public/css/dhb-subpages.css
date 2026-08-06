@@ -499,3 +499,243 @@ body.dhb-subpage {
 }
 a.dhb-ct-v:hover { color: #b88734; }
 .dhb-ct-s { font-size: 0.74rem; color: rgba(6, 54, 112, 0.55); }
+
+/* ============================================================
+   CONTACT TABS - In Person / Virtual (shared: homepage + /contact)
+   Each mode has its own info column and its own direct message form.
+   ============================================================ */
+.dhb-ctabs { margin-top: 0; }
+.dhb-ctabs-nav {
+  display: inline-flex;
+  gap: 0.6rem;
+  margin-bottom: 2.4rem;
+  border-bottom: 1px solid rgba(6, 54, 112, 0.18);
+}
+.dhb-ctab {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.6rem;
+  border: 1px solid transparent;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  background: transparent;
+  color: rgba(6, 54, 112, 0.55);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.dhb-ctab .dhb-ct-ico { width: 1.6rem; height: 1.6rem; border: 0; color: inherit; }
+.dhb-ctab .dhb-ct-ico svg { width: 0.95rem; height: 0.95rem; }
+.dhb-ctab:hover { color: #063670; }
+.dhb-ctab.is-active { color: #063670; border-color: rgba(6, 54, 112, 0.18); border-bottom-color: #f3f3ec; background: #f3f3ec; }
+.dhb-ctab.is-active { position: relative; }
+.dhb-ctab.is-active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: #b88734; }
+.dhb-ctab-pane { display: none; }
+.dhb-ctab-pane.is-active { display: block; }
+.dhb-ctab-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 2.5rem 3.5rem;
+  align-items: stretch;
+}
+@media (max-width: 800px) { .dhb-ctab-grid { grid-template-columns: 1fr; } }
+/* the shorter column (usually the form - it has no map) stretches to match
+   the taller one, then pushes its trailing "request a quote instead" note
+   down to the bottom via margin-top: auto, so the leftover height reads as
+   an anchored footer rather than an empty gap under the submit button */
+.dhb-ctab-info,
+.dhb-ctab-formcol { display: flex; flex-direction: column; }
+.dhb-ctab-copy { margin: 0 0 1.5rem; font-size: 0.96rem; line-height: 1.65; color: rgba(6, 54, 112, 0.78); }
+.dhb-ctab-list { list-style: none; margin: 0 0 1.75rem; padding: 0; display: grid; gap: 1rem; }
+.dhb-ctab-list li { display: flex; align-items: center; gap: 0.85rem; }
+.dhb-ctab-list a,
+.dhb-ctab-list span { font-size: 0.94rem; color: #063670; text-decoration: none; }
+.dhb-ctab-list a:hover { color: #b88734; }
+.dhb-ct-ico {
+  flex: 0 0 auto;
+  width: 2.1rem;
+  height: 2.1rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(6, 54, 112, 0.22);
+  color: #063670;
+}
+.dhb-ct-ico svg { width: 1.05rem; height: 1.05rem; }
+.dhb-ctab-map { overflow: hidden; aspect-ratio: 16 / 10; background: rgba(6, 54, 112, 0.06); border: 1px solid rgba(6, 54, 112, 0.14); }
+.dhb-ctab-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+/* the direct message form per mode */
+.dhb-ctab-form { margin-top: 1.1rem; display: grid; gap: 1rem; }
+.dhb-ctab-form input,
+.dhb-ctab-form select,
+.dhb-ctab-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.9rem 1.1rem;
+  background: #ffffff;
+  border: 1px solid rgba(6, 54, 112, 0.22);
+  border-radius: 3px;
+  color: #063670;
+  font: inherit;
+  font-size: 0.92rem;
+  outline: none;
+  appearance: none;
+  transition: border-color 0.25s ease;
+}
+.dhb-ctab-form textarea { resize: vertical; min-height: 5.5rem; }
+.dhb-ctab-form input:focus,
+.dhb-ctab-form select:focus,
+.dhb-ctab-form textarea:focus { border-color: #b88734; }
+.dhb-ctab-form select {
+  background-image: linear-gradient(45deg, transparent 50%, #063670 50%), linear-gradient(135deg, #063670 50%, transparent 50%);
+  background-position: calc(100% - 1.15rem) center, calc(100% - 0.8rem) center;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 2.25rem;
+}
+.dhb-ctab-submit {
+  justify-self: start;
+  padding: 1rem 2rem;
+  border: 0;
+  background: #063670;
+  color: #f3f3ec;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.dhb-ctab-submit:hover { background: #b88734; }
+.dhb-ctab-submit:disabled { opacity: 0.6; cursor: default; }
+.dhb-ctab-status { margin: 0; font-size: 0.78rem; color: #b88734; }
+
+.dhb-ctab-alt {
+  margin: 2.2rem 0 0 0;
+  margin-top: auto;
+  padding-top: 1.6rem;
+  border-top: 1px solid rgba(6, 54, 112, 0.14);
+  font-size: 0.88rem;
+  color: rgba(6, 54, 112, 0.7);
+}
+.dhb-ctab-altlink {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: #063670;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+.dhb-ctab-altlink:hover { color: #b88734; }
+
+/* dark-theme text/border colors for the homepage's embedded copy of the tabs
+   component, which sits inside a navy .theme_on-dark section rather than the
+   cream page. */
+.theme_on-dark .dhb-ctabs-nav { border-bottom-color: rgba(243, 243, 236, 0.22); }
+.theme_on-dark .dhb-ctab { color: rgba(243, 243, 236, 0.55); }
+.theme_on-dark .dhb-ctab:hover { color: #f3f3ec; }
+.theme_on-dark .dhb-ctab.is-active { color: #063670; background: #f3f3ec; }
+.theme_on-dark .dhb-ctab-copy { color: rgba(243, 243, 236, 0.78); }
+.theme_on-dark .dhb-ctab-list a,
+.theme_on-dark .dhb-ctab-list span { color: #f3f3ec; }
+.theme_on-dark .dhb-ctab-list a:hover { color: #e8bc5e; }
+.theme_on-dark .dhb-ct-ico { border-color: rgba(243, 243, 236, 0.3); color: #f3f3ec; }
+.theme_on-dark .dhb-ctab .dhb-ct-ico { border-color: transparent; color: inherit; }
+.theme_on-dark .dhb-ctab-map { border-color: rgba(243, 243, 236, 0.22); background: rgba(243, 243, 236, 0.08); }
+.theme_on-dark .dhb-ctab-alt { border-top-color: rgba(243, 243, 236, 0.18); color: rgba(243, 243, 236, 0.65); }
+.theme_on-dark .dhb-ctab-altlink { color: #f3f3ec; }
+.theme_on-dark .dhb-ctab-altlink:hover { color: #e8bc5e; }
+.theme_on-dark .dhb-ctab-submit { background: #e8bc5e; color: #063670; }
+.theme_on-dark .dhb-ctab-submit:hover { background: #f3f3ec; }
+.theme_on-dark .dhb-ctab-status { color: #e8bc5e; }
+
+/* ============================================================
+   MOBILE NAV - lightweight substitute for inner pages (<992px)
+   ============================================================ */
+.dhb-mnav-btn {
+  display: none;
+  position: fixed;
+  top: 1.15rem;
+  right: 1.15rem;
+  z-index: 130;
+  width: 3rem;
+  height: 3rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.32rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #f3f3ec;
+  box-shadow: 0 10px 26px -10px rgba(6, 20, 40, 0.35);
+  cursor: pointer;
+}
+.dhb-mnav-btn span { width: 1.2rem; height: 2px; background: #063670; border-radius: 1px; }
+@media (max-width: 991px) { .dhb-mnav-btn { display: flex; } }
+
+.dhb-mnav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  background: rgba(6, 20, 40, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s;
+}
+.dhb-mnav-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 150;
+  width: min(20rem, 84vw);
+  background: #063670;
+  padding: 5rem 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.dhb-mnav.is-open .dhb-mnav-overlay { opacity: 1; visibility: visible; }
+.dhb-mnav.is-open .dhb-mnav-panel { transform: none; }
+.dhb-mnav-close {
+  position: absolute;
+  top: 1.15rem;
+  right: 1.15rem;
+  width: 2.3rem;
+  height: 2.3rem;
+  border: 1px solid rgba(243, 243, 236, 0.3);
+  background: transparent;
+  color: #f3f3ec;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.dhb-mnav-panel ul { list-style: none; margin: 0 0 2rem; padding: 0; display: grid; gap: 1.1rem; }
+.dhb-mnav-panel a {
+  color: #f3f3ec;
+  text-decoration: none;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+.dhb-mnav-cta {
+  display: inline-block;
+  padding: 1rem 1.5rem;
+  background: #e8bc5e;
+  color: #063670;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+}
