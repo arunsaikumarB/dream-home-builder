@@ -66,68 +66,96 @@ textarea {
   position: fixed;
   inset: 0 0 auto;
   z-index: 40;
+  padding: 0.9rem clamp(0.75rem, 2vw, 1.5rem);
+  color: var(--ink);
+}
+
+.header-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 1rem;
-  padding: 1rem var(--pad);
-  mix-blend-mode: difference;
-  color: var(--white);
+  padding: 0.55rem 0.55rem 0.55rem clamp(1rem, 2.5vw, 2rem);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 18px 40px -22px rgba(15, 23, 40, 0.45);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  margin-right: auto;
 }
 
 .brand img {
-  width: 42px;
-  height: 42px;
+  width: 46px;
+  height: 46px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
 }
 
 .brand-name {
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1;
+  white-space: nowrap;
 }
 
 .nav-desktop {
   display: none;
-  gap: 1.5rem;
+  gap: clamp(1.25rem, 2.6vw, 2.75rem);
   align-items: center;
+  margin: 0 auto;
 }
 
 .nav-desktop a {
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  opacity: 0.85;
-  transition: opacity 0.35s var(--ease);
+  color: var(--navy-60);
+  white-space: nowrap;
+  transition: color 0.35s var(--ease);
 }
 
-.nav-desktop a:hover,
-.nav-desktop a.is-cta {
-  opacity: 1;
+.nav-desktop a:hover {
+  color: var(--ink);
 }
 
-.nav-desktop a.is-cta {
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 0.15rem;
+.header-cta {
+  display: none;
+  padding: 1.05rem 1.9rem;
+  border-radius: 10px;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background 0.35s var(--ease), transform 0.35s var(--ease);
+}
+
+.header-cta:hover {
+  background: var(--navy);
+  transform: translateY(-1px);
 }
 
 .menu-btn {
   appearance: none;
   border: 0;
-  background: transparent;
-  color: inherit;
+  border-radius: 999px;
+  padding: 0.85rem 1.35rem;
+  background: var(--ink);
+  color: var(--white);
   cursor: pointer;
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
@@ -706,7 +734,8 @@ textarea {
 }
 
 @media (min-width: 768px) {
-  .nav-desktop {
+  .nav-desktop,
+  .header-cta {
     display: flex;
   }
 

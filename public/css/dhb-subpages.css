@@ -1,0 +1,501 @@
+/* Styles used only by the generated inner pages (about / services / projects /
+   testimonials / contact). The homepage does not load this file. */
+
+body.dhb-subpage {
+  margin: 0;
+  background: #f3f3ec;
+  color: #063670;
+}
+
+/* the top nav is a fixed floating pill - keep content out from under it */
+.dhb-subpage .dhb-main {
+  padding-top: clamp(6rem, 9vw, 8rem);
+}
+
+/* ---------- page header ---------- */
+.dhb-pagehead {
+  padding-bottom: 0 !important;
+}
+.dhb-pagehead .dhb-inner {
+  text-align: center;
+}
+.dhb-ph-eyebrow {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #b88734;
+}
+.dhb-ph-title {
+  margin: 1.1rem 0 0;
+  font-family: var(--_fonts---font-display, Georgia, serif);
+  font-size: clamp(2.6rem, 6vw, 4.8rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #063670;
+}
+.dhb-ph-intro {
+  margin: 1.2rem auto 0;
+  max-width: 38rem;
+  font-size: 0.98rem;
+  line-height: 1.62;
+  color: rgba(6, 54, 112, 0.72);
+}
+
+/* ---------- about ---------- */
+.dhb-about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 3rem 4rem;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .dhb-about-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+.dhb-about-h {
+  margin: 0 0 1.2rem;
+  font-family: var(--_fonts---font-display, Georgia, serif);
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.15;
+  text-transform: none;
+  color: #063670;
+}
+.dhb-about-grid .p1 {
+  margin: 0 0 1.1rem;
+  line-height: 1.68;
+  color: rgba(6, 54, 112, 0.82);
+}
+.dhb-about-facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(6, 54, 112, 0.16);
+  border: 1px solid rgba(6, 54, 112, 0.16);
+}
+.dhb-about-facts li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.6rem 1.3rem;
+  background: #f3f3ec;
+}
+.dhb-af-n {
+  font-family: var(--_fonts---font-display, Georgia, serif);
+  font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+  line-height: 1;
+  color: #063670;
+}
+.dhb-af-l {
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(6, 54, 112, 0.6);
+}
+
+/* ---------- projects gallery ---------- */
+.dhb-gtabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem 0.5rem;
+  margin-bottom: 2.5rem;
+}
+.dhb-gtab {
+  appearance: none;
+  padding: 0.8rem 1.4rem;
+  border: 1px solid rgba(6, 54, 112, 0.28);
+  background: transparent;
+  color: rgba(6, 54, 112, 0.75);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.dhb-gtab:hover {
+  border-color: #063670;
+  color: #063670;
+}
+.dhb-gtab.is-active {
+  background: #063670;
+  border-color: #063670;
+  color: #f3f3ec;
+}
+.dhb-gpane {
+  display: none;
+}
+.dhb-gpane.is-active {
+  display: grid;
+}
+.dhb-gcard {
+  margin: 0;
+  overflow: hidden;
+  background: rgba(6, 54, 112, 0.06);
+  aspect-ratio: 4 / 3;
+}
+.dhb-gcard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.dhb-gcard:hover img {
+  transform: scale(1.04);
+}
+
+/* ---------- shared cta ---------- */
+.dhb-subpage .dhb-cta {
+  display: inline-block;
+  margin-top: 0.8rem;
+  padding: 1.1rem 2.1rem;
+  background: #063670;
+  color: #f3f3ec;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.25s ease;
+}
+.dhb-subpage .dhb-cta:hover {
+  background: #b88734;
+}
+
+/* the contact page is a single full-bleed split - no extra frame around it */
+.dhb-subpage #quote {
+  margin-top: 0;
+}
+
+/* tighten the run-in from the page header to the first content section */
+.dhb-subpage .dhb-pagehead + .section {
+  padding-top: clamp(2rem, 3.5vw, 3rem);
+}
+
+/* ============================================================
+   SERVICES - alternating editorial rows
+   ============================================================ */
+.dhb-srv { background: #f3f3ec; }
+.dhb-srv-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 2.5rem 4rem;
+  align-items: center;
+  padding: clamp(2.5rem, 4.5vw, 4rem) 0;
+  border-top: 1px solid rgba(6, 54, 112, 0.14);
+}
+.dhb-srv-row:first-child { border-top: 0; }
+.dhb-srv-row:nth-child(even) .dhb-srv-text { order: 2; }
+@media (max-width: 860px) {
+  .dhb-srv-row { grid-template-columns: 1fr; gap: 1.6rem; }
+  .dhb-srv-row:nth-child(even) .dhb-srv-text { order: 0; }
+}
+.dhb-srv-num {
+  display: block;
+  font-family: var(--_fonts---font-display, Georgia, serif);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(184, 135, 52, 0.75);
+  margin-bottom: 0.9rem;
+}
+.dhb-srv-title {
+  margin: 0 0 1rem;
+  font-family: var(--_fonts---font-display, Georgia, serif);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.12;
+  text-transform: none;
+  color: #063670;
+}
+.dhb-srv-copy {
+  margin: 0 0 1.5rem;
+  max-width: 34rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(6, 54, 112, 0.78);
+}
+.dhb-srv-link {
+  display: inline-block;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #063670;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(6, 54, 112, 0.4);
+  padding-bottom: 0.35rem;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+.dhb-srv-link:hover { color: #b88734; border-bottom-color: #b88734; }
+.dhb-srv-fig { margin: 0; overflow: hidden; aspect-ratio: 5 / 4; background: rgba(6, 54, 112, 0.06); }
+.dhb-srv-fig img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.dhb-srv-row:hover .dhb-srv-fig img { transform: scale(1.04); }
+
+/* ============================================================
+   PROJECTS - sticky filter rail + masonry wall
+   ============================================================ */
+.dhb-prj { background: #f3f3ec; }
+.dhb-prj-layout {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  gap: 3rem;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .dhb-prj-layout { grid-template-columns: 1fr; gap: 1.75rem; }
+}
+.dhb-prj-rail { position: sticky; top: 7.5rem; display: flex; flex-direction: column; }
+@media (max-width: 900px) {
+  .dhb-prj-rail { position: static; flex-direction: row; flex-wrap: wrap; gap: 0.5rem; }
+  .dhb-prj-railhead { width: 100%; }
+}
+.dhb-prj-railhead {
+  font-size: 0.64rem; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #b88734; margin-bottom: 1rem;
+}
+.dhb-prj-tab {
+  appearance: none;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.7rem 0;
+  border: 0;
+  border-bottom: 1px solid rgba(6, 54, 112, 0.14);
+  background: transparent;
+  color: rgba(6, 54, 112, 0.72);
+  font: inherit;
+  font-size: 0.86rem;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.dhb-prj-tab em { font-style: normal; font-size: 0.66rem; letter-spacing: 0.1em; color: rgba(6, 54, 112, 0.4); }
+.dhb-prj-tab:hover { color: #063670; }
+.dhb-prj-tab.is-active { color: #063670; border-bottom-color: #b88734; font-weight: 600; }
+.dhb-prj-tab.is-active em { color: #b88734; }
+@media (max-width: 900px) {
+  .dhb-prj-tab { width: auto; padding: 0.6rem 1rem; border: 1px solid rgba(6, 54, 112, 0.2); }
+  .dhb-prj-tab.is-active { background: #063670; color: #f3f3ec; border-color: #063670; }
+  .dhb-prj-tab.is-active em { color: rgba(243, 243, 236, 0.7); }
+}
+.dhb-prj-cta {
+  margin-top: 1.75rem;
+  padding: 0.95rem 1.2rem;
+  background: #063670;
+  color: #f3f3ec;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.25s ease;
+}
+.dhb-prj-cta:hover { background: #b88734; }
+/* masonry so the wall reads as a composition, not a uniform grid */
+.dhb-prj-wall { display: none; }
+.dhb-prj-wall.is-active { display: block; columns: 3; column-gap: 1rem; }
+@media (max-width: 1200px) { .dhb-prj-wall.is-active { columns: 2; } }
+@media (max-width: 600px) { .dhb-prj-wall.is-active { columns: 1; } }
+.dhb-prj-card {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  margin: 0 0 1rem;
+  overflow: hidden;
+  background: rgba(6, 54, 112, 0.06);
+}
+.dhb-prj-card img {
+  width: 100%; height: auto; display: block;
+  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.dhb-prj-card:hover img { transform: scale(1.035); }
+
+/* ============================================================
+   TESTIMONIALS - rating band + numbered editorial list
+   ============================================================ */
+.dhb-tst { background: #f3f3ec; }
+.dhb-tst-band {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+  background: rgba(6, 54, 112, 0.16);
+  border: 1px solid rgba(6, 54, 112, 0.16);
+}
+.dhb-tst-band > div {
+  display: flex; flex-direction: column; gap: 0.4rem;
+  padding: 1.6rem 1.4rem; background: #f3f3ec; text-align: center;
+}
+.dhb-tst-n {
+  font-family: var(--_fonts---font-display, Georgia, serif);
+  font-size: clamp(1.9rem, 3.6vw, 2.7rem); line-height: 1; color: #063670;
+}
+.dhb-tst-l {
+  font-size: 0.62rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: rgba(6, 54, 112, 0.6);
+}
+.dhb-tst-list { list-style: none; margin: 0; padding: 0; counter-reset: t; }
+.dhb-tst-row {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr) 14rem;
+  gap: 1rem 2.5rem;
+  align-items: start;
+  padding: clamp(1.6rem, 2.8vw, 2.4rem) 0;
+  border-top: 1px solid rgba(6, 54, 112, 0.14);
+}
+.dhb-tst-row:first-child { border-top: 0; }
+@media (max-width: 860px) {
+  .dhb-tst-row { grid-template-columns: 3rem minmax(0, 1fr); gap: 0.6rem 1.25rem; }
+  .dhb-tst-who { grid-column: 2; }
+}
+.dhb-tst-idx {
+  font-family: var(--_fonts---font-display, Georgia, serif);
+  font-size: 1.5rem; line-height: 1.2; color: transparent;
+  -webkit-text-stroke: 1px rgba(184, 135, 52, 0.8);
+}
+.dhb-tst-quote {
+  margin: 0;
+  font-size: clamp(1rem, 1.5vw, 1.22rem);
+  line-height: 1.62;
+  color: rgba(6, 54, 112, 0.88);
+}
+.dhb-tst-who { display: flex; flex-direction: column; gap: 0.3rem; margin: 0; }
+.dhb-tst-name { font-size: 0.82rem; font-weight: 600; color: #063670; }
+.dhb-tst-proj {
+  font-size: 0.62rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: rgba(6, 54, 112, 0.55);
+}
+.dhb-tst-foot { margin-top: 2.5rem; text-align: center; }
+
+/* .dhb-block carries its own generous section padding - override it directly
+   for the section that follows a page header, otherwise the gap reads as a hole */
+.dhb-subpage .dhb-pagehead + .section.dhb-block {
+  padding-top: clamp(1.5rem, 2.5vw, 2.25rem) !important;
+}
+.dhb-subpage .dhb-pagehead .dhb-inner {
+  padding-bottom: 0 !important;
+}
+
+/* shared star row */
+.dhb-stars { display: block; color: #b88734; font-size: 0.9rem; letter-spacing: 0.2em; line-height: 1; }
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.dhb-ab-band { display: block; line-height: 0; }
+.dhb-ab-band img { width: 100%; height: clamp(16rem, 34vw, 30rem); object-fit: cover; display: block; }
+.dhb-ab-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: 3rem 4rem;
+  align-items: start;
+}
+@media (max-width: 860px) { .dhb-ab-grid { grid-template-columns: 1fr; gap: 2.25rem; } }
+.dhb-ab-eyebrow {
+  display: block; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #b88734; margin-bottom: 1.1rem;
+}
+.dhb-ab-h {
+  margin: 0 0 1.3rem;
+  font-family: var(--_fonts---font-display, Georgia, serif);
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 400; line-height: 1.14; text-transform: none; color: #063670;
+}
+.dhb-ab-copy p { margin: 0 0 1.1rem; font-size: 0.97rem; line-height: 1.7; color: rgba(6, 54, 112, 0.8); }
+.dhb-ab-facts {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px;
+  background: rgba(6, 54, 112, 0.16); border: 1px solid rgba(6, 54, 112, 0.16);
+}
+.dhb-ab-facts li { display: flex; flex-direction: column; gap: 0.35rem; padding: 1.6rem 1.3rem; background: #f3f3ec; }
+
+/* navy pull quote lifted from a real review */
+.dhb-ab-quote { background: #063670; padding: clamp(3rem, 6vw, 5rem) 0; text-align: center; }
+.dhb-ab-quote .dhb-stars { margin-bottom: 1.4rem; color: #e8bc5e; }
+.dhb-ab-quote blockquote {
+  margin: 0 auto; max-width: 44rem;
+  font-family: var(--_fonts---font-display, Georgia, serif);
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem); font-weight: 400; line-height: 1.32;
+  text-transform: none; color: #f3f3ec;
+}
+.dhb-ab-cite {
+  margin: 1.6rem 0 0; display: flex; justify-content: center; gap: 1.1rem;
+  font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(243, 243, 236, 0.55);
+}
+.dhb-ab-cite span { color: #f3f3ec; font-weight: 600; }
+
+.dhb-ab-list { list-style: none; margin: 0 0 2.2rem; padding: 0; }
+.dhb-ab-list li { border-top: 1px solid rgba(6, 54, 112, 0.14); }
+.dhb-ab-list li:last-child { border-bottom: 1px solid rgba(6, 54, 112, 0.14); }
+.dhb-ab-list a {
+  display: flex; align-items: baseline; gap: 1.5rem;
+  padding: 1.1rem 0; text-decoration: none;
+  color: #063670; transition: color 0.25s ease, padding-left 0.25s ease;
+}
+.dhb-ab-list a:hover { color: #b88734; padding-left: 0.6rem; }
+.dhb-ab-list em {
+  font-style: normal; font-family: var(--_fonts---font-display, Georgia, serif);
+  font-size: 0.95rem; color: transparent; -webkit-text-stroke: 1px rgba(184, 135, 52, 0.85);
+}
+.dhb-ab-list span { font-size: clamp(1.05rem, 1.8vw, 1.35rem); }
+
+/* ============================================================
+   TESTIMONIALS - featured quote
+   ============================================================ */
+.dhb-tst-top { padding-bottom: 0 !important; }
+.dhb-tst-feature { background: #063670; padding: clamp(3rem, 6vw, 5rem) 0; text-align: center; margin-top: clamp(2rem, 4vw, 3rem); }
+.dhb-tst-feature .dhb-stars { margin-bottom: 1.4rem; color: #e8bc5e; }
+.dhb-tst-feature blockquote {
+  margin: 0 auto; max-width: 46rem;
+  font-family: var(--_fonts---font-display, Georgia, serif);
+  font-size: clamp(1.45rem, 2.8vw, 2.2rem); font-weight: 400; line-height: 1.3;
+  text-transform: none; color: #f3f3ec;
+}
+.dhb-tst-fcite {
+  margin: 1.6rem 0 0; display: flex; justify-content: center; gap: 1.1rem;
+  font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(243, 243, 236, 0.55);
+}
+.dhb-tst-fcite span { color: #f3f3ec; font-weight: 600; }
+.dhb-tst-body { display: flex; flex-direction: column; gap: 0.8rem; }
+.dhb-tst-body .dhb-stars { font-size: 0.75rem; }
+
+/* ============================================================
+   CONTACT - info cards above the split
+   ============================================================ */
+.dhb-ct { padding-bottom: clamp(2rem, 3.5vw, 3rem) !important; }
+.dhb-ct-cards {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px;
+  background: rgba(6, 54, 112, 0.16); border: 1px solid rgba(6, 54, 112, 0.16);
+}
+@media (max-width: 800px) { .dhb-ct-cards { grid-template-columns: 1fr; } }
+.dhb-ct-cards li {
+  display: flex; flex-direction: column; gap: 0.5rem;
+  padding: 1.7rem 1.5rem; background: #f3f3ec; min-width: 0;
+}
+.dhb-ct-k { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: #b88734; }
+.dhb-ct-v {
+  font-size: 1.02rem; line-height: 1.35; color: #063670;
+  text-decoration: none; overflow-wrap: anywhere; transition: color 0.25s ease;
+}
+a.dhb-ct-v:hover { color: #b88734; }
+.dhb-ct-s { font-size: 0.74rem; color: rgba(6, 54, 112, 0.55); }

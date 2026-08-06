@@ -14,6 +14,9 @@ import {
 
 gsap.registerPlugin(ScrollTrigger)
 
+const navCta = nav.find((item) => item.href === '#quote')
+const navLinks = nav.filter((item) => item !== navCta)
+
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [heroIndex, setHeroIndex] = useState(0)
@@ -91,20 +94,27 @@ export default function App() {
   return (
     <>
       <header className="site-header">
-        <a className="brand" href="#hero" aria-label="Dream Home Builders home">
-          <img src="/images/dhb.png" alt="" />
-          <span className="brand-name">Dream Home Builders</span>
-        </a>
-        <nav className="nav-desktop" aria-label="Primary">
-          {nav.map((item) => (
-            <a key={item.href} href={item.href} className={item.href === '#quote' ? 'is-cta' : undefined}>
-              {item.label}
+        <div className="header-bar">
+          <a className="brand" href="#hero" aria-label="Dream Home Builders home">
+            <img src="/images/dhb.png" alt="" />
+            <span className="brand-name">Dream Home Builders</span>
+          </a>
+          <nav className="nav-desktop" aria-label="Primary">
+            {navLinks.map((item) => (
+              <a key={item.href} href={item.href}>
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          {navCta ? (
+            <a className="header-cta" href={navCta.href}>
+              {navCta.label}
             </a>
-          ))}
-        </nav>
-        <button className="menu-btn" type="button" onClick={() => setMenuOpen(true)}>
-          Menu
-        </button>
+          ) : null}
+          <button className="menu-btn" type="button" onClick={() => setMenuOpen(true)}>
+            Menu
+          </button>
+        </div>
       </header>
 
       <div className={`menu-overlay${menuOpen ? ' open' : ''}`} aria-hidden={!menuOpen}>
