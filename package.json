@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node server.mjs",
     "start": "node server.mjs",
+    "test:paths": "node --test scripts/test-path-guard.mjs",
     "inject": "node scripts/inject-dhb.mjs"
   }
 }
